@@ -2,11 +2,13 @@ import { LoginForm } from "@/components/login-form";
 import logo from "@/assets/Logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 
 
 
 function Login() {
+  const { login, loginWithGoogle } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ function Login() {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      await login(email, password);
       alert("Login successful!");
       navigate("/dashboard");
     } catch (error: any) {
@@ -23,6 +26,7 @@ function Login() {
 
   const handleGoogleLogin = async () => {
     try {
+      await loginWithGoogle();
       alert("Google login successful!");
       navigate("/dashboard");
     } catch (error: any) {

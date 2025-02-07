@@ -2,6 +2,7 @@ import logo from "@/assets/Logo.png"
 import { useNavigate } from "react-router-dom"
 import { SignupForm } from "@/components/signup-form"
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 
 
@@ -9,6 +10,7 @@ import { useState } from "react";
 
 
 function Signup() {
+  const { signup } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -18,6 +20,7 @@ function Signup() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      await signup(username, email, password);
       alert("Signup successful! Please log in.");
       navigate("/login");
     } catch (error: any) {
