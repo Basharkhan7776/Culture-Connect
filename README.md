@@ -134,14 +134,10 @@ The project is configured using environment variables (as shown above) and utili
 **Demo Video**
 -------------
 
-Below is an embedded YouTube video demo that auto-plays. Replace the video ID with your actual video ID.
+Click Here
 
-  <iframe src="https://www.youtube.com/embed/abQzgB938_4?si=BPnavwwApeMlxuNS" 
-          frameborder="0" 
-          allow="autoplay; encrypted-media" 
-          allowfullscreen 
-          style="position:absolute;top:0;left:0;width:100%;height:100%;">
-  </iframe>
+  
+  [![YouTube Video](https://img.youtube.com/vi/abQzgB938_4/0.jpg)](https://www.youtube.com/watch?v=abQzgB938_4)
 
 **Usage**
 -----
