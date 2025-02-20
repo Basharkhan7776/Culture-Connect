@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { useEffect, useState } from 'react';
 import DisplayCards from "@/components/ui/display-cards";
-import { Bell, Locate, Sparkles } from "lucide-react";
+import { Bell, Locate, MessageCircle, Pin, Sparkles } from "lucide-react";
 import { TestimonialCarousel } from "@/components/ui/testimonial"
 
 import { SERVICE_ID, TEMPLATE_ID, USER_ID } from "@/envConfig";
@@ -47,7 +47,6 @@ export function Home() {
                 }
             );
     };
-    console.log(status);
 
 
 

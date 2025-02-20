@@ -1,19 +1,24 @@
+import dotenv from 'dotenv';
 
-export const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
-export const cloudName = import.meta.env.VITE_CLOUD_NAME;
+dotenv.config();
+
+
+
+export const uploadPreset="Profile_Upload";
+export const cloudName="dov4txbvf";
 
 export const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    apiKey: "AIzaSyC-NyO450wSTnERU0LyG8kkliB1N8fh8QY",
+    authDomain: "api-culture-connect-5390e.firebaseapp.com",
+    projectId: "api-culture-connect-5390e",
+    storageBucket: "api-culture-connect-5390e.firebasestorage.app",
+    messagingSenderId: "612028648305",
+    appId: "1:612028648305:web:ff118f5424a023f67744d0"
 };
 
 
-export const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+export const adminEmail="basharkhan7776@gmail.com";
 
-export const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-export const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-export const USER_ID = import.meta.env.VITE_EMAILJS_USER_ID;
+export const SERVICE_ID="service_i4b2q4e";
+export const TEMPLATE_ID="template_4q84hmd";
+export const USER_ID="U9oo3Nuanm4n06mjC";

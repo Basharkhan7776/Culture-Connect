@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
 
@@ -25,22 +23,16 @@ interface WavesProps {
 }
 
 class Grad {
-  x: number
-  y: number
-  z: number
-
-  constructor(x: number, y: number, z: number) {
+  constructor(x, y, z) {
     this.x = x
     this.y = y
     this.z = z
   }
-
-  dot2(x: number, y: number) {
+  dot2(x, y) {
     return this.x * x + this.y * y
   }
 }
 class Noise {
-  grad3: Grad[]
   constructor(seed = 0) {
     this.grad3 = [
       new Grad(1, 1, 0),

@@ -38,7 +38,6 @@ const TestimonialCarousel = React.forwardRef<
           setExitX(0)
         }, 200)
       }
-      console.log(Number(event))
     }
 
     return (
