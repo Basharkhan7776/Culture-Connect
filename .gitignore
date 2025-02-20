@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+./src/envConfig.ts
 
 # Editor directories and files
 .vscode/*

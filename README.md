@@ -43,21 +43,21 @@ yarn install
 Create a `.env` file in the root of your project with the following keys (update with your actual values):
 
 ```env
-REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
-REACT_APP_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-REACT_APP_FIREBASE_PROJECT_ID=your_firebase_project_id
-REACT_APP_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-REACT_APP_FIREBASE_APP_ID=your_firebase_app_id
+FIREBASE_API_KEY=your_firebase_api_key
+FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+FIREBASE_PROJECT_ID=your_firebase_project_id
+FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+FIREBASE_APP_ID=your_firebase_app_id
 
-REACT_APP_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-REACT_APP_CLOUDINARY_UPLOAD_PRESET=your_cloudinary_upload_preset
+CLOUD_NAME=your_cloudinary_cloud_name
+UPLOAD_PRESET=your_cloudinary_upload_preset
 
-REACT_APP_ADMIN_EMAIL=xyz@gmail.com
+ADMIN_EMAIL=xyz@gmail.com
 
-REACT_APP_EMAILJS_SERVICE_ID=your_emailjs_service_id
-REACT_APP_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
-REACT_APP_EMAILJS_USER_ID=your_emailjs_user_id
+EMAILJS_SERVICE_ID=your_emailjs_service_id
+EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+EMAILJS_USER_ID=your_emailjs_user_id
 ```
 
 *Note:* Restart your development server after modifying the `.env` file.
