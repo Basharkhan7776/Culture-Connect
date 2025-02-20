@@ -1,23 +1,18 @@
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-
-
-export const uploadPreset=process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
-export const cloudName=process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+export const uploadPreset="Profile_Upload";
+export const cloudName="dov4txbvf";
 
 export const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID
+    apiKey: "AIzaSyC-NyO450wSTnERU0LyG8kkliB1N8fh8QY",
+    authDomain: "api-culture-connect-5390e.firebaseapp.com",
+    projectId: "api-culture-connect-5390e",
+    storageBucket: "api-culture-connect-5390e.firebasestorage.app",
+    messagingSenderId: "612028648305",
+    appId: "1:612028648305:web:ff118f5424a023f67744d0"
 };
 
-export const adminEmail=process.env.REACT_APP_ADMIN_EMAIL;
+export const adminEmail="basharkhan7776@gmail.com";
 
-export const SERVICE_ID=process.env.REACT_APP_EMAILJS_SERVICE_ID;
-export const TEMPLATE_ID=process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-export const USER_ID=process.env.REACT_APP_EMAILJS_USER_ID;
+export const SERVICE_ID="service_i4b2q4e";
+export const TEMPLATE_ID="template_4q84hmd";
+export const USER_ID="U9oo3Nuanm4n06mjC";
