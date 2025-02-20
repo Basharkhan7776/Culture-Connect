@@ -146,12 +146,7 @@ The project is configured using environment variables (as shown above) and utili
 
 
 
-  <iframe src="https://www.youtube.com/embed/abQzgB938_4?autoplay=1" 
-          frameborder="0" 
-          allow="autoplay; encrypted-media" 
-          allowfullscreen 
-          style="width:100%;">
-  </iframe>
+  https://youtu.be/abQzgB938_4?si=CEnvohNGzUwNiQdc
 
 **Usage**
 -----
