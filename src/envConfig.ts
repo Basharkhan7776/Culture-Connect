@@ -1,24 +1,19 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
+export const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
+export const cloudName = import.meta.env.VITE_CLOUD_NAME;
 
 
-export const uploadPreset="";
-export const cloudName="";
 
 export const firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 
-export const adminEmail="";
+export const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
 
-export const SERVICE_ID="";
-export const TEMPLATE_ID="";
-export const USER_ID="";
+export const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+export const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
