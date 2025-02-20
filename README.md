@@ -43,21 +43,21 @@ yarn install
 Create a `.env` file in the root of your project with the following keys (update with your actual values):
 
 ```env
-FIREBASE_API_KEY=your_firebase_api_key
-FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-FIREBASE_PROJECT_ID=your_firebase_project_id
-FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
-FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-FIREBASE_APP_ID=your_firebase_app_id
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_firebase_app_id
 
-CLOUD_NAME=your_cloudinary_cloud_name
-UPLOAD_PRESET=your_cloudinary_upload_preset
+VITE_CLOUD_NAME=your_cloudinary_cloud_name
+VITE_UPLOAD_PRESET=your_cloudinary_upload_preset
 
-ADMIN_EMAIL=xyz@gmail.com
+VITE_ADMIN_EMAIL=xyz@gmail.com
 
-EMAILJS_SERVICE_ID=your_emailjs_service_id
-EMAILJS_TEMPLATE_ID=your_emailjs_template_id
-EMAILJS_USER_ID=your_emailjs_user_id
+VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+VITE_EMAILJS_USER_ID=your_emailjs_user_id
 ```
 
 *Note:* Restart your development server after modifying the `.env` file.
@@ -120,22 +120,32 @@ The project is configured using environment variables (as shown above) and utili
 
 *Below are some sample screenshots. Replace the image paths with your actual screenshots.*
 
-![Dashboard Screenshot](./screenshots/dashboard.png)
-![Post Detail Screenshot](./screenshots/post-detail.png)
-![Feedback Form Screenshot](./screenshots/feedback-form.png)
+### Dashboard
+![Home](./screenshots/1HomeHero.png)
+---
+![Login](./screenshots/2Login.png)
+---
+![Signup](./screenshots/3Signup.png)
+---
+![Dashboard](./screenshots/4Dashboard.png)
+---
+![Dashboard](./screenshots/5Notification.png)
+---
+![Dashboard](./screenshots/6SearchBox.png)
+---
+![Dashboard](./screenshots/7Profile.png)
+---
+![Home](./screenshots/8Home.png)
+---
+![Home](./screenshots/10Home.png)
+---
 
 **Demo Video**
 -------------
 
-Below is an embedded YouTube video demo that auto-plays. Replace the video ID with your actual video ID.
 
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-  <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1" 
-          frameborder="0" 
-          allow="autoplay; encrypted-media" 
-          allowfullscreen 
-          style="position:absolute;top:0;left:0;width:100%;height:100%;">
-  </iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/abQzgB938_4?si=AcfzT-6hccW-WofV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 **Usage**
