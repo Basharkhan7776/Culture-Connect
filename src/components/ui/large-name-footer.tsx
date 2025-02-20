@@ -1,8 +1,12 @@
 import { Icons } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/Logo.png";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate();
+
+
   return (
     <footer className=" py-12 px-4 md:px-6 bg-background">
       <div className="container mx-auto">
@@ -36,22 +40,22 @@ function Footer() {
               <h3 className="font-semibold mb-4">Pages</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="/" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
+                  <a href="#" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="/docs" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
+                  <a href="#about" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="/contact" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
+                  <a href="#contact" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
                     Contact
                   </a>
                 </li>
                 <li>
-                  <a href="/blogs" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
+                  <a href="#blogs" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
                     Blog
                   </a>
                 </li>
@@ -81,12 +85,12 @@ function Footer() {
               <h3 className="font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="/privacy-policy" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
+                  <a href="/privacy-policy" onClick={(e) => { e.preventDefault(); navigate("privacy-policy"); }} className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="/tos" className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
+                  <a href="/tos" onClick={(e) => { e.preventDefault(); navigate("tos"); }} className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-white">
                     Terms of Service
                   </a>
                 </li>

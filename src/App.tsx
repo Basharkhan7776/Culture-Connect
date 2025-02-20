@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { AuthProvider } from "@/context/AuthContext";
 import { PostsProvider } from '@/context/PostsContext';
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Tos from "./pages/Tos";
 
 
 
@@ -20,8 +22,9 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
-          {/* <Route path="dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} /> */}
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="tos" element={<Tos />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </PostsProvider>

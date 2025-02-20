@@ -13,6 +13,7 @@ import {
   Send,
   StickyNote,
   Tag,
+  MessageCircle
 } from "lucide-react"
 import { NavSecondary } from "@/components/nav-secondary"
 import {
@@ -206,6 +207,7 @@ export default function Dashboard() {
     // Now filter all posts to include only posts from these authors.
     const suggestionPosts = posts.filter((post: IPost) => likedAuthors.has(post.user.userId));
     setFilteredPosts(suggestionPosts);
+    exitHandler();
   };
 
   // Handler to show posts whose pincode is within current user's range.
@@ -222,6 +224,7 @@ export default function Dashboard() {
       return postPincode >= lowerBound && postPincode <= upperBound;
     });
     setFilteredPosts(localPosts);
+    exitHandler();
   };
 
 
@@ -249,6 +252,7 @@ export default function Dashboard() {
   const handleTagFilter = (tag: string) => {
     const filtered = posts.filter((post: IPost) => post.tags && post.tags.includes(tag));
     setFilteredPosts(filtered);
+    exitHandler();
   };
 
 
@@ -271,6 +275,7 @@ export default function Dashboard() {
   const handleShowAllPosts = () => {
     setSearchQuery('');
     setFilteredPosts(posts);
+    exitHandler();
   };
 
   //Scrolling Feature Hide
@@ -300,7 +305,7 @@ export default function Dashboard() {
 
 
   return (
-    <SidebarProvider>
+    <SidebarProvider >
       <AppSidebar
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -312,7 +317,7 @@ export default function Dashboard() {
         topTags={topTags}
       />
       <SidebarInset>
-        <div className={`fixed flex items-center h-20 gap-2 px-6 mx-4 w-full rounded-xl backdrop-blur-xl ${isVisible ? "translate-y-0" : "-translate-y-full"} transition-transform duration-300`}>
+        <div className={`fixed flex items-center h-20 gap-2 px-6 mx-4 w-fit rounded-xl backdrop-blur-xl ${isVisible ? "translate-y-0" : "-translate-y-full"} transition-transform duration-300`}>
           <SidebarTrigger className="-ml-1 scale-150" />
           <Separator orientation="vertical" className="mr-2 h-4" />
           <Button
@@ -328,7 +333,7 @@ export default function Dashboard() {
           </Button>
         </div>
         <div className="flex flex-row justify-center mt-20 py-4 ">
-          <div className="columns-1 sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+          <div className="columns-1 sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 ">
             {
               filteredPosts.length > 0 ?
                 filteredPosts.map((post) => {
@@ -377,19 +382,19 @@ export default function Dashboard() {
           </div>
         </div>
         {/* This is chatbot imple logic, scaled in future */}
-        {/* <div className={`fixed right-6 bottom-6 ${isVisible ? "translate-x-0" : "translate-x-28"} transition-transform duration-300`}>
+        <div className={`fixed right-6 bottom-6 ${isVisible ? "translate-x-0" : "translate-x-28"} transition-transform duration-300`}>
           <Dialog>
             <DialogTrigger className="flex justify-center items-center h-20 w-20 rounded-full text-xl bg-primary outline-none hover:bg-secondary transition-colors duration-300">
               <MessageCircle fill="white" className="size-8" />
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogTitle>AI Chatbot Coming soon in future</DialogTitle>
               </DialogHeader>
             </DialogContent>
           </Dialog>
 
-        </div> */}
+        </div>
       </SidebarInset >
     </SidebarProvider >
   );
@@ -918,7 +923,7 @@ export function NavUser() {
               <DialogTitle className="text-xl text-center">Profile</DialogTitle>
             </DialogHeader>
             <form className="flex flex-col gap-4" onSubmit={handleUpdate}>
-              <div className="flex gap-6">
+              <div className="flex sm:flex-row flex-col items-center gap-6">
                 <div>
                   <Avatar className="h-44 w-44">
                     <AvatarImage src={userData?.avatar || ""} alt={userData?.username || 'User'} />
