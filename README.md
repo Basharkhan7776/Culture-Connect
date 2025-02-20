@@ -144,9 +144,14 @@ The project is configured using environment variables (as shown above) and utili
 -------------
 
 
-<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/abQzgB938_4?si=AcfzT-6hccW-WofV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+
+
+  <iframe src="https://www.youtube.com/embed/abQzgB938_4?autoplay=1" 
+          frameborder="0" 
+          allow="autoplay; encrypted-media" 
+          allowfullscreen 
+          style="width:100%;">
+  </iframe>
 
 **Usage**
 -----
