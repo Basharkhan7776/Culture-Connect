@@ -8,23 +8,14 @@ import {
 import * as React from "react"
 import {
   Brain,
-  Circle,
-  Frame,
-  Locate,
-  Map,
   MapPin,
-  MessageCircle,
-  PieChart,
   Search,
   Send,
   StickyNote,
   Tag,
   MessageCircle
 } from "lucide-react"
-// import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
-// import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
@@ -86,7 +77,6 @@ import NotifCard from "@/components/NotifCard";
 
 /* ----------------------------------------------------------- */
 //FIREBASE Imports
-import { updateProfile } from "firebase/auth";
 import { useAuth, IUser } from "@/context/AuthContext";
 import uploadImageToCloudinary from '@/services/uploadAvatar';
 import { usePosts, IPost } from '@/context/PostsContext';
@@ -108,17 +98,11 @@ const exitHandler = () => {
 
 
 
-
-
-
-
-
-
 export default function Dashboard() {
   const { posts, setPosts, fetchPosts } = usePosts();
   const { currentUser, userData } = useAuth();
   const navigate = useNavigate();
-
+  console.log(Number(adminEmail));
 
   // Handler to like a post:
   // - Adds currentUser.uid to post.likes
@@ -857,6 +841,7 @@ export function NavMain({
 export function NavUser() {
   // Get current user, user data, and functions from AuthContext
   const { currentUser, userData, updateProfileData } = useAuth();
+  console.log(currentUser);
 
   // Local states for form inputs
   const [newUsername, setNewUsername] = useState<string>("");

@@ -21,6 +21,7 @@ function DisplayCard({
   iconClassName = "text-blue-500",
   titleClassName = "text-blue-500",
 }: DisplayCardProps) {
+  console.log(Number(date+iconClassName))
   return (
     <div
       className={cn(
