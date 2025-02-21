@@ -9,12 +9,12 @@ A full-featured React application that integrates Firebase for authentication an
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [Features](#features)
-   + [Authentication](#authentication)
-   + [Posts & Like/Unlike](#posts--likeunlike)
-   + [Search and Filter](#search-and-filter)
-   + [Notifications](#notifications)
-   + [Admin Authority](#admin-authority)
-   + [Feedback Form](#feedback-form)
+	+ [Authentication](#authentication)
+	+ [Posts & Like/Unlike](#posts--likeunlike)
+	+ [Search and Filter](#search-and-filter)
+	+ [Notifications](#notifications)
+	+ [Admin Authority](#admin-authority)
+	+ [Feedback Form](#feedback-form)
 * [Screenshots](#screenshots)
 * [Demo Video](#demo-video)
 * [Usage](#usage)
@@ -120,23 +120,33 @@ The project is configured using environment variables (as shown above) and utili
 
 *Below are some sample screenshots. Replace the image paths with your actual screenshots.*
 
-![Dashboard Screenshot](./screenshots/dashboard.png)
-![Post Detail Screenshot](./screenshots/post-detail.png)
-![Feedback Form Screenshot](./screenshots/feedback-form.png)
+### Dashboard
+![Home](./screenshots/1HomeHero.png)
+---
+![Login](./screenshots/2Login.png)
+---
+![Signup](./screenshots/3Signup.png)
+---
+![Dashboard](./screenshots/4Dashboard.png)
+---
+![Dashboard](./screenshots/5Notification.png)
+---
+![Dashboard](./screenshots/6SearchBox.png)
+---
+![Dashboard](./screenshots/7Profile.png)
+---
+![Home](./screenshots/8Home.png)
+---
+![Home](./screenshots/10Home.png)
+---
 
 **Demo Video**
 -------------
 
-Below is an embedded YouTube video demo that auto-plays. Replace the video ID with your actual video ID.
 
-<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-  <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1" 
-          frameborder="0" 
-          allow="autoplay; encrypted-media" 
-          allowfullscreen 
-          style="position:absolute;top:0;left:0;width:100%;height:100%;">
-  </iframe>
-</div>
+
+
+  https://youtu.be/abQzgB938_4?si=CEnvohNGzUwNiQdc
 
 **Usage**
 -----
