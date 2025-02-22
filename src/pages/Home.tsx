@@ -18,10 +18,12 @@ import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { useEffect, useState } from 'react';
 import DisplayCards from "@/components/ui/display-cards";
 import { Bell, Locate, Sparkles } from "lucide-react";
-import { TestimonialCarousel } from "@/components/ui/testimonial"
+import { TestimonialCarousel } from "@/components/ui/testimonial";
+
 
 import { SERVICE_ID, TEMPLATE_ID, USER_ID } from "@/envConfig";
 import emailjs from 'emailjs-com';
+import { useAuth } from '@/context/AuthContext';
 
 
 
@@ -51,10 +53,10 @@ export function Home() {
 
 
 
-    return <div className="flex flex-row w-full justify-center font-poppins">
-        <div className="flex flex-col items-center h-full 2xl:w-9/12 xl:w-[90vw] w-full gap-20 scroll-smooth snap-y">
+    return <div className="flex flex-row w-full justify-center font-poppins overflow-auto overflow-y-scroll pointer-events-auto scroll-auto touch-auto no-scrollbar">
+        <div className="flex flex-col items-center h-full 2xl:w-9/12 xl:w-[90vw] w-full gap-20">
             <HomeNav />
-            <div id='home' className="snap-center relative flex justify-center items-center -z-10 w-full h-screen border border-gray-600 bg-background/80 rounded-3xl mt-2 overflow-hidden">
+            <div id='home' className="snap-center relative flex justify-center items-center -z-10 w-full h-screen border border-gray-600 bg-background/80 rounded-3xl mt-2 ">
                 <div className="absolute inset-0">
                     <Waves
                         lineColor={"rgba(235,89,12,255)"}
@@ -70,9 +72,9 @@ export function Home() {
                         yGap={26}
                     />
                 </div>
-                <div className='absolute flex justify-center 2xl:gap-20 items-center  lg:w-2/3 sm:w-[80vw] w-full aspect-video rounded-3xl backdrop-blur-xl shadow-sm shadow-gray-600'>
+                <div className='absolute flex m-2 justify-center 2xl:gap-20 items-center  lg:w-2/3 sm:w-[80vw] w-[95%] aspect-video rounded-3xl backdrop-blur-xl shadow-sm shadow-gray-600'>
                     <div className='flex flex-col items-center gap-6 justify-center'>
-                        <h1 className='text-3xl font-semibold'>Reconnect with Your Roots</h1>
+                        <h1 className='sm:text-3xl text-2xl font-semibold'>Reconnect with Your Roots</h1>
                         <p>Celebrate  the beauty of culture and tradition</p>
                         <Button variant="default" className='text-lg'>Get Started Now</Button>
                     </div>
@@ -128,15 +130,15 @@ export function Home() {
                             <div className="grid w-full items-center gap-8">
                                 <div className="flex flex-col space-y-1.5 gap-2">
                                     <Label htmlFor="name">Name</Label>
-                                    <Input id="name" placeholder="Enter your Name" name='name' required/>
+                                    <Input id="name" placeholder="Enter your Name" name='name' required />
                                 </div>
                                 <div className="flex flex-col space-y-1.5 gap-2">
                                     <Label htmlFor="email">Email</Label>
-                                    <Input id="email" type='email' placeholder="Enter your Email" name='email' required/>
+                                    <Input id="email" type='email' placeholder="Enter your Email" name='email' required />
                                 </div>
                                 <div className="flex flex-col space-y-1.5 gap-2">
                                     <Label htmlFor="textarea">Message</Label>
-                                    <Textarea className='h-24' id="textarea" placeholder="Enter your Message" name='message' required/>
+                                    <Textarea className='h-24' id="textarea" placeholder="Enter your Message" name='message' required />
                                 </div>
                             </div>
                         </form>
@@ -154,6 +156,7 @@ export function Home() {
 }
 
 function HomeNav() {
+    const { currentUser, userData } = useAuth();
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
@@ -181,7 +184,7 @@ function HomeNav() {
 
 
 
-    return <div id='navbar' className={`flex lg:gap-40 gap-4 backdrop-blur-xl z-10 fixed justify-around p-4 shadow-sm shadow-gray-500 rounded-full mt-4 scroll-smooth transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
+    return <div id='navbar' className={`flex lg:gap-40 gap-2 sm:gap-4 backdrop-blur-xl z-10 fixed justify-around p-4 shadow-sm shadow-gray-500 rounded-full mt-4 scroll-smooth transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
         <div className='flex text-3xl items-center gap-2 cursor-pointer font-script'>
             <img src={logo} alt="Logo" className="w-12 h-12 p-2" />
             Culture Connect
@@ -192,8 +195,11 @@ function HomeNav() {
             <a href="#blogs" className='hover:text-orange-600 hover:-translate-y-0.5 hover:scale-110 transition-all duration-200'>Blogs</a>
         </div>
         <div className='flex items-center gap-4'>
-            <Button variant="secondary" size="lg" className='hidden md:block' onClick={() => { navigate('/login') }}>Sign in</Button>
-            <Button variant="default" size="lg" onClick={() => { navigate('/signup') }}>Register</Button>
+            {(!userData) ? <>
+                <Button variant="secondary" size="lg" className='hidden md:block' onClick={() => { navigate('/login') }}>Sign in</Button>
+                <Button variant="default" size="lg" onClick={() => { navigate('/signup') }}>Register</Button>
+            </>
+                : <Button variant="default" size="lg" onClick={() => { navigate('/dashboard') }}>Dashboard</Button>}
         </div>
     </div>
 }
@@ -319,7 +325,7 @@ const TESTIMONIAL_DATA = [
     {
         id: 1,
         name: "Alisha Kausheen",
-        avatar: "https://scontent.cdninstagram.com/v/t51.2885-19/441462175_1673088416786587_7670476286200531833_n.jpg?stp=cp0_dst-jpg_s110x80_tt6&_nc_cat=107&ccb=1-7&_nc_sid=bf7eb4&_nc_ohc=zho7IRmAKqQQ7kNvgHxZNxR&_nc_oc=AdhWe2SEaIr1qG5Xz1nHC4pOTgwAMVEcubBb_eATCz8KLrcRR-6zW9aumVg2DshWBs5HWQJvDlvfIXz1sRUISRk4&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&oh=00_AYBweHFRXA3bNFYe5PNrFspmf8mDXr9iQyBslGvES4W8Mg&oe=67AE7D1D",
+        avatar: "https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png",
         description: "Quite an amazing and engaging project Looking forward to see folks using it to share their values and culture with the world"
     },
     {
