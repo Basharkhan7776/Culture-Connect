@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Link } from 'react-router-dom'
+import { Spinner } from "./ui/spinner"
 
 interface LoginFormProps extends React.ComponentPropsWithoutRef<"form"> {
   handleLoginWithGoogle:any;
@@ -10,7 +11,8 @@ interface LoginFormProps extends React.ComponentPropsWithoutRef<"form"> {
   setEmail: any;
   password: string;
   setPassword: any;
-  handleSignin:any
+  handleSignin:any;
+  loading: boolean;
 }
 
 export function LoginForm({
@@ -21,6 +23,7 @@ export function LoginForm({
   password,
   setPassword,
   handleSignin,
+  loading,
   ...props
 }: LoginFormProps) {
   return (
@@ -61,8 +64,9 @@ export function LoginForm({
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button type="submit" className="w-full">
-          Login
+        <Button type="submit" className="w-full" disabled={!email || !password || loading}>
+          {(loading)?<Spinner variant="circle"/>
+          :"Login"}
         </Button>
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
           <span className="relative z-10 bg-background px-2 text-muted-foreground">

@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {Link} from "react-router-dom";
+import { Spinner } from "@/components/ui/spinner";
 
 interface Props {
   className?:string;
@@ -15,6 +16,7 @@ interface Props {
   handleSignup:any;
   rePassword:string;
   setRePassword:any;
+  loading:boolean;
 }
 
 export function SignupForm({
@@ -77,8 +79,8 @@ export function SignupForm({
           onChange={(e)=> props.setRePassword(e.target.value)}
           />
         </div>
-        <Button type="submit" className="w-full">
-          Sign Up
+        <Button type="submit" className="w-full" disabled={!props.email || !props.password || !props.username || !props.rePassword || props.loading}>
+          {(props.loading)?<Spinner variant="circle"/>:"Sign Up"}
         </Button>
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
           <span className="relative z-10 bg-background px-2 text-muted-foreground">

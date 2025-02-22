@@ -74,7 +74,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                             pincode: 0,
                             avatar:
                                 user.photoURL ||
-                                "",
+                                "https://cdn-icons-png.flaticon.com/128/847/847969.png",
                             liked: [],
                         };
                         await setDoc(userRef, newUser);

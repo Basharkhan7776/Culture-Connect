@@ -83,6 +83,7 @@ import { usePosts, IPost } from '@/context/PostsContext';
 import { db } from '@/services/firebase';
 import { updateDoc, doc, arrayUnion, arrayRemove, deleteDoc } from 'firebase/firestore';
 import { adminEmail } from "@/envConfig";
+import { Spinner } from "@/components/ui/spinner";
 
 
 
@@ -450,16 +451,13 @@ function AppSidebar({ setSearchQuery, searchQuery, handleSearch, handleShowAllPo
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [country, setCountry] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Process tags (expect comma-separated input)
     const tagsArr = tagsInput;
-    // if (tagsArr.length < 3 || tagsArr.length > 5) {
-    //   alert('Please provide between 3 to 5 tags (comma separated).');
-    //   return;
-    // }
 
     const finalAddress = `${street}, ${town}, ${city}, ${state}, ${country}`;
 
@@ -484,8 +482,9 @@ function AppSidebar({ setSearchQuery, searchQuery, handleSearch, handleShowAllPo
       },
     };
 
+    setLoading(true);
     await createPost(postData, imageFile || undefined);
-
+    setLoading(false);
     // Clear form fields after submission
     setTitle('');
     setDescription('');
@@ -500,6 +499,7 @@ function AppSidebar({ setSearchQuery, searchQuery, handleSearch, handleShowAllPo
     setState('');
     setCountry('');
     alert("Post Uploaded!!")
+    exitHandler();
   };
 
   /* --------------- Notification Logic -------------------- */
@@ -553,154 +553,159 @@ function AppSidebar({ setSearchQuery, searchQuery, handleSearch, handleShowAllPo
             <DialogHeader>
               <DialogTitle className="text-2xl ">Create Post</DialogTitle>
             </DialogHeader>
-            <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
-              <Label>Cost Title</Label>
-              <Input
-                type="text"
-                placeholder="Enter your title here"
-                minLength={10}
-                maxLength={50}
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-              <Label>Cost Description</Label>
-              <Textarea
-                placeholder="Enter your description here"
-                minLength={40}
-                maxLength={200}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-              <Label>Tags</Label>
-              <div className="flex items-center gap-1">
+            {(userData) ? <>
+              <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+                <Label>Cost Title</Label>
                 <Input
-                  placeholder="Tag 1"
-                  pattern="^\S+$"
-                  onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter only one word (no spaces)')}
-                  onInput={(e) => e.currentTarget.setCustomValidity('')}
                   type="text"
-                  value={tagsInput[0]}
-                  onChange={(e) => {
-                    const newTags = [...tagsInput];
-                    newTags[0] = e.target.value;
-                    setTagsInput(newTags);
-                  }}
+                  placeholder="Enter your title here"
+                  minLength={10}
+                  maxLength={50}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   required
-                ></Input>
+                />
+                <Label>Cost Description</Label>
+                <Textarea
+                  placeholder="Enter your description here"
+                  minLength={40}
+                  maxLength={200}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+                <Label>Tags</Label>
+                <div className="flex items-center gap-1">
+                  <Input
+                    placeholder="Tag 1"
+                    pattern="^\S+$"
+                    onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter only one word (no spaces)')}
+                    onInput={(e) => e.currentTarget.setCustomValidity('')}
+                    type="text"
+                    value={tagsInput[0]}
+                    onChange={(e) => {
+                      const newTags = [...tagsInput];
+                      newTags[0] = e.target.value;
+                      setTagsInput(newTags);
+                    }}
+                    required
+                  ></Input>
+                  <Input
+                    placeholder="Tag 2"
+                    pattern="^\S+$"
+                    onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter only one word (no spaces)')}
+                    onInput={(e) => e.currentTarget.setCustomValidity('')}
+                    type="text"
+                    value={tagsInput[1]}
+                    onChange={(e) => {
+                      const newTags = [...tagsInput];
+                      newTags[1] = e.target.value;
+                      setTagsInput(newTags);
+                    }}
+                    required
+                  ></Input>
+                  <Input
+                    placeholder="Tag 3"
+                    pattern="^\S+$"
+                    onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter only one word (no spaces)')}
+                    onInput={(e) => e.currentTarget.setCustomValidity('')}
+                    type="text"
+                    value={tagsInput[2]}
+                    onChange={(e) => {
+                      const newTags = [...tagsInput];
+                      newTags[2] = e.target.value;
+                      setTagsInput(newTags);
+                    }}
+                    required
+                  ></Input>
+                </div>
+                <Label>Address</Label>
+                <div className=" flex flex-col gap-2">
+                  <div className="flex gap-2">
+                    <Input
+                      type="text"
+                      placeholder="Street"
+                      value={street}
+                      onChange={(e) => setStreet(e.target.value)}
+                      required
+                    ></Input>
+                    <Input
+                      type="text"
+                      placeholder="Town"
+                      value={town}
+                      onChange={(e) => setTown(e.target.value)}
+                      required
+                    ></Input>
+                    <Input
+                      type="text"
+                      placeholder="City"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      required
+                    ></Input>
+                  </div>
+                  <div className="flex gap-2">
+                    <Input
+                      type="text"
+                      placeholder="State"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      required
+                    ></Input>
+                    <Input
+                      type="text"
+                      placeholder="Country"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      required
+                    ></Input>
+                  </div>
+                  <Input
+                    type="number"
+                    placeholder="Pincode"
+                    value={pincode}
+                    onChange={(e) => setPincode(e.target.value)}
+                    required
+                  ></Input>
+                </div>
+                <div className="flex justify-around">
+                  <div className="flex flex-col gap-2">
+                    <Label>Date</Label>
+                    <Input
+                      type="date"
+                      placeholder="Enter your date here"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Label>Time</Label>
+                    <Input
+                      type="time"
+                      placeholder="Enter your time here"
+                      value={time}
+                      onChange={(e) => setTime(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+                <Label>Upload Picture</Label>
                 <Input
-                  placeholder="Tag 2"
-                  pattern="^\S+$"
-                  onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter only one word (no spaces)')}
-                  onInput={(e) => e.currentTarget.setCustomValidity('')}
-                  type="text"
-                  value={tagsInput[1]}
+                  type="file"
+                  accept="image/*"
                   onChange={(e) => {
-                    const newTags = [...tagsInput];
-                    newTags[1] = e.target.value;
-                    setTagsInput(newTags);
+                    if (e.target.files) {
+                      setImageFile(e.target.files[0]);
+                    }
                   }}
-                  required
                 ></Input>
-                <Input
-                  placeholder="Tag 3"
-                  pattern="^\S+$"
-                  onInvalid={(e) => e.currentTarget.setCustomValidity('Please enter only one word (no spaces)')}
-                  onInput={(e) => e.currentTarget.setCustomValidity('')}
-                  type="text"
-                  value={tagsInput[2]}
-                  onChange={(e) => {
-                    const newTags = [...tagsInput];
-                    newTags[2] = e.target.value;
-                    setTagsInput(newTags);
-                  }}
-                  required
-                ></Input>
-              </div>
-              <Label>Address</Label>
-              <div className=" flex flex-col gap-2">
-                <div className="flex gap-2">
-                  <Input
-                    type="text"
-                    placeholder="Street"
-                    value={street}
-                    onChange={(e) => setStreet(e.target.value)}
-                    required
-                  ></Input>
-                  <Input
-                    type="text"
-                    placeholder="Town"
-                    value={town}
-                    onChange={(e) => setTown(e.target.value)}
-                    required
-                  ></Input>
-                  <Input
-                    type="text"
-                    placeholder="City"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    required
-                  ></Input>
-                </div>
-                <div className="flex gap-2">
-                  <Input
-                    type="text"
-                    placeholder="State"
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                    required
-                  ></Input>
-                  <Input
-                    type="text"
-                    placeholder="Country"
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                    required
-                  ></Input>
-                </div>
-                <Input
-                  type="number"
-                  placeholder="Pincode"
-                  value={pincode}
-                  onChange={(e) => setPincode(e.target.value)}
-                  required
-                ></Input>
-              </div>
-              <div className="flex justify-around">
-                <div className="flex flex-col gap-2">
-                  <Label>Date</Label>
-                  <Input
-                    type="date"
-                    placeholder="Enter your date here"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Label>Time</Label>
-                  <Input
-                    type="time"
-                    placeholder="Enter your time here"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-              <Label>Upload Picture</Label>
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files) {
-                    setImageFile(e.target.files[0]);
-                  }
-                }}
-              ></Input>
-              <Button type="submit">Create Post</Button>
-            </form>
+                <Button
+                  type="submit"
+                >{loading ? <Spinner variant="circle" /> : 'Create Post'}</Button>
+              </form>
+            </>
+              : <Spinner variant="circle" />}
           </DialogContent>
         </Dialog>
         <Sheet>
@@ -714,13 +719,16 @@ function AppSidebar({ setSearchQuery, searchQuery, handleSearch, handleShowAllPo
                 <p>Here you can see all your notifications</p>
               </SheetDescription>
             </SheetHeader>
-            <div className="flex flex-col gap-4 no-scrollbar">
-              {!(todayEvents.length) ? (<p>No Event</p>) : (
-                todayEvents.map((post) => (
-                  <NotifCard key={post.id} title={post.title} time={post.time} date={post.date} />
-                ))
-              )}
-            </div>
+            {(userData) ?
+              <div className="flex flex-col gap-4 no-scrollbar">
+                {!(todayEvents.length) ? (<p>No Event</p>) : (
+                  todayEvents.map((post) => (
+                    <NotifCard key={post.id} title={post.title} time={post.time} date={post.date} />
+                  ))
+                )}
+              </div>
+              : <Spinner variant="circle" />
+            }
           </SheetContent>
         </Sheet>
       </div>
@@ -754,7 +762,7 @@ function AppSidebar({ setSearchQuery, searchQuery, handleSearch, handleShowAllPo
           <Button variant={"ghost"} className="justify-start p-0 px-1 " onClick={handleSuggestion}><Brain />Suggestion</Button>
           <Button variant={"ghost"} className="justify-start p-0 px-1 " onClick={handleLocalPosts}><MapPin />Local</Button>
           <label className="text-[12px] text-secondary-foreground mt-4">Populars</label>
-          {topTags.length > 0 &&
+          {(userData)?(topTags.length > 0 &&
             topTags.map((tag: string) => (
               <Button
                 variant={"ghost"}
@@ -765,7 +773,8 @@ function AppSidebar({ setSearchQuery, searchQuery, handleSearch, handleShowAllPo
                 <Tag />
                 {tag}
               </Button>
-            ))}
+            )))
+          :<Spinner variant="circle" />}
         </div>
         <NavSecondary items={data.navSecondary} className="mt-auto" /> {/*feedback form*/}
       </SidebarContent>
@@ -848,6 +857,7 @@ export function NavUser() {
   const [newLocation, setNewLocation] = useState<string>("");
   const [newPincode, setNewPincode] = useState<string>("");
   const [newAvatarFile, setNewAvatarFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   // const [error, setError] = useState<string>('');
 
 
@@ -874,7 +884,9 @@ export function NavUser() {
       let avatarUrl: string = userData?.avatar || '';
       if (newAvatarFile) {
         console.log('Uploading new avatar file:', newAvatarFile);
+        setLoading(true);
         avatarUrl = await uploadImageToCloudinary(newAvatarFile);
+        setLoading(false);
         console.log('New avatar URL:', avatarUrl);
       }
 
@@ -887,7 +899,9 @@ export function NavUser() {
       };
 
       console.log('Updating profile with:', updates);
+      setLoading(true);
       await updateProfileData(updates);
+      setLoading(false);
       alert('Profile updated successfully!');
     } catch (error: any) {
       console.error('Error updating profile:', error);
@@ -902,18 +916,21 @@ export function NavUser() {
     <SidebarMenu>
       <SidebarMenuItem>
         <Dialog>
-          <DialogTrigger className="w-full bg-secondary rounded-full">
+          <DialogTrigger
+            className="w-full bg-secondary rounded-full"
+          >
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 border border-primary">
-                <AvatarImage src={userData?.avatar || ""} alt={userData?.username || 'User'} />
-                <AvatarFallback>{userData?.username?.[0] || "U"}</AvatarFallback>
+                <AvatarImage src={userData?.avatar || "https://cdn-icons-png.flaticon.com/128/847/847969.png"} alt={userData?.username || 'User'} />
+                <AvatarFallback>{(userData) ? userData?.username?.[0] : <Spinner variant="ellipsis" />}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{userData?.username || 'User'}</span>
-                <span className="truncate text-xs">{userData?.email || 'user@example.com'}</span>
+                {(userData) ? <><span className="truncate font-semibold">{userData?.username || 'User'}</span>
+                  <span className="truncate text-xs">{userData?.email || 'user@example.com'}</span></>
+                  : <Spinner variant="ellipsis" />}
               </div>
 
             </SidebarMenuButton>
@@ -922,37 +939,44 @@ export function NavUser() {
             <DialogHeader>
               <DialogTitle className="text-xl text-center">Profile</DialogTitle>
             </DialogHeader>
-            <form className="flex flex-col gap-4" onSubmit={handleUpdate}>
-              <div className="flex sm:flex-row flex-col items-center gap-6">
-                <div>
-                  <Avatar className="h-44 w-44">
-                    <AvatarImage src={userData?.avatar || ""} alt={userData?.username || 'User'} />
-                    <AvatarFallback className="text-5xl">{userData?.username?.[0] || "U"}</AvatarFallback>
-                  </Avatar>
-                  <div className="relative bottom-10 ">
-                    <Plus className="bg-primary cursor-pointer rounded-full h-8 w-8 "></Plus>
-                    <input type="file" className="opacity-0 absolute rounded-full h-8 w-8 bottom-1" accept="image/*"
-                      onChange={handleFileChange}
-                    />
+            {userData ? <>
+              <form className="flex flex-col gap-4" onSubmit={handleUpdate}>
+                <div className="flex sm:flex-row flex-col items-center gap-6">
+                  <div>
+                    <Avatar className="h-44 w-44">
+                      <AvatarImage src={userData?.avatar || ""} alt={userData?.username || 'User'} />
+                      <AvatarFallback className="text-5xl">{userData?.username?.[0] || "U"}</AvatarFallback>
+                    </Avatar>
+                    <div className="relative bottom-10 ">
+                      <Plus className="bg-primary cursor-pointer rounded-full h-8 w-8 "></Plus>
+                      <input type="file" className="opacity-0 absolute rounded-full h-8 w-8 bottom-1" accept="image/*"
+                        onChange={handleFileChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4 justify-center ">
+                    <div className="flex gap-2 items-center">
+                      <Label>Name:</Label>
+                      <Input type="text" className="border-none" placeholder={userData?.username || ''} value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      <Label>Location:</Label>
+                      <Input type="text" className="border-none" placeholder={userData?.location || ''} value={newLocation} onChange={(e) => setNewLocation(e.target.value)} />
+                    </div>
+                    <div className="flex gap-2 items-center">
+                      <Label>Pincode:</Label>
+                      <Input type="number" className="border-none" placeholder={userData?.pincode?.toString() || ''} value={newPincode} onChange={(e) => setNewPincode(e.target.value)} />
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col gap-4 justify-center ">
-                  <div className="flex gap-2 items-center">
-                    <Label>Name:</Label>
-                    <Input type="text" className="border-none" placeholder={userData?.username || ''} value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <Label>Location:</Label>
-                    <Input type="text" className="border-none" placeholder={userData?.location || ''} value={newLocation} onChange={(e) => setNewLocation(e.target.value)} />
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <Label>Pincode:</Label>
-                    <Input type="number" className="border-none" placeholder={userData?.pincode?.toString() || ''} value={newPincode} onChange={(e) => setNewPincode(e.target.value)} />
-                  </div>
-                </div>
-              </div>
-              <Button type="submit">Edit and Save</Button>
-            </form>
+                <Button
+                  type="submit"
+                >
+                  {(loading) ? <Spinner variant="circle" /> : 'Update & Save'}
+                </Button>
+              </form>
+            </>
+              : <Spinner variant="circle" />}
           </DialogContent>
         </Dialog>
       </SidebarMenuItem>

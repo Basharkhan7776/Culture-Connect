@@ -15,15 +15,19 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [rePassword, setRePassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setLoading(true);
       await signup(username, email, password);
+      setLoading(false);
       alert("Signup successful! Please log in.");
       navigate("/login");
     } catch (error: any) {
+      setLoading(false);
       alert(error.message);
     }
   };
@@ -51,6 +55,7 @@ function Signup() {
           setPassword={setPassword}
           rePassword={rePassword}
           setRePassword={setRePassword}
+          loading={loading}
         />
       </div>
     </div>
