@@ -156,7 +156,7 @@ export function Home() {
 }
 
 function HomeNav() {
-    const { currentUser, userData } = useAuth();
+    const { userData } = useAuth();
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
