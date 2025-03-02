@@ -9,6 +9,7 @@ import {
     signOut,
     updateProfile,
     User,
+    sendPasswordResetEmail,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
@@ -32,6 +33,10 @@ interface IAuthContext {
     loginWithGoogle: () => Promise<void>;
     logout: () => Promise<void>;
     updateProfileData: (updates: Partial<IUser>) => Promise<void>;
+    resetPassword: (email: string) => Promise<void>;
+    sendOtpEmail: (email: string) => Promise<void>;
+    verifyOtp: (email: string, otp: string) => Promise<boolean>;
+    updatePassword: (email: string, newPassword: string) => Promise<void>;
 }
 
 // Create the context
@@ -45,6 +50,7 @@ export const useAuth = () => {
     }
     return context;
 };
+
 
 // Provider component to wrap your app
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -145,6 +151,61 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     };
 
+    function resetPassword(email: string) {
+        return sendPasswordResetEmail(auth, email);
+      }
+    
+      // Custom function: send an OTP email (this calls your backend API)
+      async function sendOtpEmail(email: string): Promise<void> {
+        try {
+          const response = await fetch('https://your-backend.com/api/send-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          if (!response.ok) {
+            throw new Error('Failed to send OTP');
+          }
+        } catch (error) {
+          throw error;
+        }
+      }
+    
+      // Custom function: verify the OTP entered by the user
+      async function verifyOtp(email: string, otp: string): Promise<boolean> {
+        try {
+          const response = await fetch('https://your-backend.com/api/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, otp }),
+          });
+          if (!response.ok) {
+            throw new Error('OTP verification failed');
+          }
+          const data = await response.json();
+          return data.valid;
+        } catch (error) {
+          throw error;
+        }
+      }
+    
+      // Custom function: update the user's password (after OTP verification)
+      async function updatePassword(email: string, newPassword: string): Promise<void> {
+        try {
+          const response = await fetch('https://your-backend.com/api/update-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, newPassword }),
+          });
+          if (!response.ok) {
+            throw new Error('Failed to update password');
+          }
+        } catch (error) {
+          throw error;
+        }
+      }
+    
+
     const value: IAuthContext = {
         currentUser,
         userData,
@@ -153,6 +214,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loginWithGoogle,
         logout,
         updateProfileData,
+        resetPassword,
+        sendOtpEmail,
+        verifyOtp,
+        updatePassword,
     };
 
     return (
