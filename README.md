@@ -1,7 +1,7 @@
 **Culture Connect**
 =====================
 
-A full-featured React application that integrates Firebase for authentication and Firestore for data storage, Cloudinary for image uploads, and EmailJS (or a third-party API) for sending feedback emails.
+Culture Connect is a modern, full‑stack web application designed to bring people together through shared cultural experiences. Built as a Single‑Page Application with React and Vite, it leverages Firebase Authentication for secure sign‑up/sign‑in, Firestore for real‑time data storage of user‑generated posts and events, and Cloudinary for efficient image uploads. Users can create and discover culture‑focused posts, filter by tags or location, like and bookmark favorites, and receive event notifications. An integrated feedback form—powered by EmailJS—lets visitors send suggestions directly from the frontend, while admin users have elevated controls for content moderation.
 
 **Table of Contents**
 -----------------
