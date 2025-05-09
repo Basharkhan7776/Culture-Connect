@@ -22,6 +22,7 @@ function Login() {
       setLoading(false);
       alert("Login successful!");
       navigate("/dashboard");
+      window.location.reload();
     } catch (error: any) {
       setLoading(false);
       alert(error.message.split(" ").slice(1).join(" "));
@@ -35,6 +36,7 @@ function Login() {
       setLoading(false);
       alert("Google login successful!");
       navigate("/dashboard");
+      window.location.reload();
     } catch (error: any) {
       setLoading(false);
       alert(error.message.split(" ").slice(1).join(" "));
