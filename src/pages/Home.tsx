@@ -53,11 +53,11 @@ export function Home() {
 
 
 
-    return <div className="flex flex-row w-full justify-center font-poppins overflow-auto overflow-y-scroll pointer-events-auto scroll-auto touch-auto no-scrollbar">
+    return <div className="flex flex-row w-full justify-center font-poppins no-scrollbar">
         <div className="flex flex-col items-center h-full 2xl:w-9/12 xl:w-[90vw] w-full gap-20">
             <HomeNav />
-            <div id='home' className="snap-center relative flex justify-center items-center -z-10 w-full h-screen border border-gray-600 bg-background/80 rounded-3xl mt-2 ">
-                <div className="absolute inset-0">
+            <div id='home' className="snap-center relative flex justify-center items-center -z-10 w-full h-screen border border-gray-600 bg-background/80 rounded-3xl mt-2 overflow-auto touch-auto">
+                <div className="absolute inset-0 pointer-events-none">
                     <Waves
                         lineColor={"rgba(235,89,12,255)"}
                         backgroundColor="transparent"
@@ -73,9 +73,9 @@ export function Home() {
                     />
                 </div>
                 <div className='absolute flex m-2 justify-center 2xl:gap-20 items-center  lg:w-2/3 sm:w-[80vw] w-[95%] aspect-video rounded-3xl backdrop-blur-xl shadow-sm shadow-gray-600'>
-                    <div className='flex flex-col items-center gap-6 justify-center'>
-                        <h1 className='sm:text-3xl text-2xl font-semibold'>Reconnect with Your Roots</h1>
-                        <p>Celebrate  the beauty of culture and tradition</p>
+                    <div className='flex w-full flex-col items-center gap-6 justify-center'>
+                        <h1 className='sm:text-3xl text-2xl text-center font-semibold'>Reconnect with Your Roots</h1>
+                        <p className='text-center'>Celebrate the beauty of culture and tradition</p>
                         <Button variant="default" className='text-lg'>Get Started Now</Button>
                     </div>
                     <div className='md:block hidden'>
